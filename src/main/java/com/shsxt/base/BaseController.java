@@ -13,6 +13,4 @@ public class BaseController {
         request.setAttribute("ctx", request.getContextPath());
     }
 
-
-
 }
