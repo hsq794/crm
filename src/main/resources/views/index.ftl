@@ -51,7 +51,7 @@
     <div class="form-group">
         <label class="control-label visible-ie8 visible-ie9">密码</label>
         <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off"
-               placeholder="密码" name="password"/>
+               placeholder="密码" name="password" id="password"/>
     </div>
     <div class="form-actions">
         <button onclick="login()" class="btn btn-success uppercase btn-xs btn-block">登录</button>

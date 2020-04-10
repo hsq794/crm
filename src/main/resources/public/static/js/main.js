@@ -30,7 +30,7 @@ function logout(){
             $.removeCookie("trueName");
             $.messager.alert("来自crm","系统将在三秒后自动退出...","info");
             setTimeout(function (){
-                window.location.href=ctx+"index";
+                window.location.href=ctx+"/index";
             },3000)
         }
     })
