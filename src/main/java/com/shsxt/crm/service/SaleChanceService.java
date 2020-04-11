@@ -121,4 +121,18 @@ public class SaleChanceService extends BaseService<SaleChance,Integer> {
         AssertUtil.isTrue(null==ids || ids.length==0,"请选择待删除机会数据!");
         AssertUtil.isTrue(deleteBatch(ids)<ids.length,"机会数据删除失败!");
     }
+
+    /**
+     * 开发和终止
+     * @param saleChance
+     */
+    public void updateSaleChanceDevResult(SaleChance saleChance){
+        /**
+         * 判断营销id
+         *  是否存在
+         */
+
+    }
+
+
 }
