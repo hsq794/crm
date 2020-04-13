@@ -113,4 +113,5 @@ public abstract class BaseService<T,ID> {
         result.put("rows", pageInfo.getList());
         return result;
     }
-}
+
+   }

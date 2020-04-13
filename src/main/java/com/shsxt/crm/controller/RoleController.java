@@ -58,4 +58,10 @@ public class RoleController extends BaseController {
         return success("角色记录添加成功!");
     }
 
+    @RequestMapping("addGrant")
+    @ResponseBody
+    public ResultInfo addGrant(Integer[] mids,Integer roleId){
+        roleService.addGrant(mids,roleId);
+        return success("权限添加成功");
+    }
 }
