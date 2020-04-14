@@ -2,6 +2,7 @@ package com.shsxt.crm.controller;
 
 import com.shsxt.base.BaseController;
 import com.shsxt.crm.dao.PermissionMapper;
+import com.shsxt.crm.service.ModuleService;
 import com.shsxt.crm.service.PermissionService;
 import com.shsxt.crm.service.UserService;
 import com.shsxt.crm.utils.LoginUserUtil;
@@ -22,6 +23,9 @@ public class IndexController extends BaseController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private ModuleService moduleService;
+
     /**
      * 登录页
      */
@@ -36,12 +40,11 @@ public class IndexController extends BaseController {
     @RequestMapping("main")
     public String main(HttpServletRequest request){
         Integer userId= LoginUserUtil.releaseUserIdFromCookie(request);
-        //System.out.println(userId);
         List<String> permissions=permissionService.queryUserHasRolesHasPermissions(userId);
         request.getSession().setAttribute("permissions",permissions);
-       // System.out.println(permissions.toString());
+        request.getSession().setAttribute("modules",moduleService.queryUserHasRoleHasModuleDtos(userId));
         request.setAttribute("user",userService.selectByPrimaryKey(userId));
-        return "main";
+        return "main_2.0";
     }
 
 }
