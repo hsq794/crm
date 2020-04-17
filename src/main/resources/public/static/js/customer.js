@@ -16,7 +16,7 @@ function closeCustomerDialog(){
 }
 
 function clearFormData(){
-    $("#name").val("");
+    $("input[name='name']").val("");
     $("#area").val("");
     $("#cusManager").val("");
     $("#level").val("");
@@ -46,4 +46,18 @@ function openCustomerModifyDialog(){
 
 function deleteCustomer(){
     deleteRecode("dg",ctx+"/customer/delete",searchCustomersByParams);
+}
+
+function openShowOrderTab(){
+
+    var rows=$("#dg").datagrid("getSelections");
+    if(rows.length==0){
+        $.messager.alert("来自crm","请选择待查看的客户记录","warning");
+    }
+
+    if(rows.length>1){
+        $.messager.alert("来自crm","暂不支持批量查看客户记录","warning");
+    }
+
+    window.parent.openTab(rows[0].name+"_订单展示",ctx+"/customer/order_info?cid="+rows[0].id);
 }

@@ -3,6 +3,7 @@ package com.shsxt.crm.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shsxt.base.BaseService;
+import com.shsxt.crm.dao.SaleChanceMapper;
 import com.shsxt.crm.enums.DevResult;
 import com.shsxt.crm.enums.StateStatus;
 import com.shsxt.crm.query.SaleChanceQuery;
@@ -12,12 +13,16 @@ import com.shsxt.crm.vo.SaleChance;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class SaleChanceService extends BaseService<SaleChance,Integer> {
+
+    @Resource
+    private SaleChanceMapper saleChanceMapper;
 
     /**
      * 查询
@@ -124,13 +129,17 @@ public class SaleChanceService extends BaseService<SaleChance,Integer> {
 
     /**
      * 开发和终止
-     * @param saleChance
+     * @param
      */
-    public void updateSaleChanceDevResult(SaleChance saleChance){
+    public void updateSaleChanceDevResult(Integer sid,Integer devResult){
         /**
          * 判断营销id
          *  是否存在
          */
+        AssertUtil.isTrue(null==sid,"请输入营销编号！");
+       SaleChance saleChance = saleChanceMapper.selectByPrimaryKey(sid);
+       AssertUtil.isTrue(saleChance==null,"营销开发不存在!");
+       AssertUtil.isTrue(saleChanceMapper.updateByDevResult(sid,devResult)<1,"开发计划失败!");
 
     }
 

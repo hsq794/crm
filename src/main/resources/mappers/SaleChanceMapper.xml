@@ -214,4 +214,9 @@
             #{item}
         </foreach>
     </update>
+    <update id="updateByDevResult">
+        update t_sale_chance
+        set dev_result=#{devResult}
+        where id=#{sid}
+    </update>
 </mapper>

@@ -6,6 +6,7 @@ import com.shsxt.crm.query.CustomerQuery;
 import com.shsxt.crm.service.CustomerService;
 import com.shsxt.crm.vo.Customer;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -50,4 +51,11 @@ public class CustomerController extends BaseController {
         customerService.deleteCustomer(id);
         return success("客户删除失败!");
     }
+
+    @RequestMapping("order_info")
+    public String showOrderInfo(Integer cid, Model model){
+        model.addAttribute("customer",customerService.selectByPrimaryKey(cid));
+        return "customer_order";
+    }
+
 }

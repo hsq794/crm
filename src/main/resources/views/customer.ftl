@@ -39,6 +39,7 @@
         <th field="dsdjh" width="200" align="center">地税</th>
         <th field="createDate" width="200" align="center">创建时间</th>
         <th field="updateDate" width="200" align="center">更新时间</th>
+
     </tr>
     </thead>
 </table>
@@ -51,7 +52,7 @@
         <a href="javascript:deleteCustomer()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
         <a href="javascript:deleteCustomer()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">联系人管理</a>
         <a href="javascript:deleteCustomer()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">交往记录</a>
-        <a href="javascript:deleteCustomer()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">订单查看</a>
+        <a href="javascript:openShowOrderTab()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">订单查看</a>
     </div>
     <div>
         客户名称： <input type="text" id="name" size="20" onkeydown="if(event.keyCode==13) searchCustomerChance()"/>
