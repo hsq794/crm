@@ -1,9 +1,12 @@
 package com.shsxt.crm.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.shsxt.base.BaseService;
 import com.shsxt.crm.dao.CustomerLossMapper;
 import com.shsxt.crm.dao.CustomerMapper;
 import com.shsxt.crm.dao.CustomerOrderMapper;
+import com.shsxt.crm.query.CustomerQuery;
 import com.shsxt.crm.utils.AssertUtil;
 import com.shsxt.crm.utils.PhoneUtil;
 import com.shsxt.crm.vo.Customer;
@@ -17,9 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @SuppressWarnings("all")
@@ -129,5 +130,54 @@ public class CustomerService extends BaseService<Customer,Integer> {
 
         }
     }
+
+    /**
+     * 客户贡献分析
+     */
+    public Map<String,Object> queryCustomerContributionByParams(CustomerQuery customerQuery){
+        Map<String,Object> result=new HashMap<>();
+        PageHelper.startPage(customerQuery.getPage(),customerQuery.getRows());
+        List<Map<String,Object>> list=customerMapper.queryCustomerContributionByParams(customerQuery);
+        PageInfo<Map<String,Object>> pageInfo=new PageInfo<>(list);
+        result.put("total",pageInfo.getTotal());
+        result.put("rows",pageInfo.getList());
+        return result;
+    }
+    /**
+     * 数据分析图客户构成
+     */
+    public Map<String,Object> countCustomerMake(){
+        Map<String,Object> result=new HashMap<>();
+        List<Map<String,Object>> list=customerMapper.countCustomerMake();
+        List<String> data1List=new ArrayList<>();
+        List<Integer> data2List=new ArrayList<>();
+        list.forEach(m->{
+            data1List.add(m.get("level").toString());
+            data2List.add(Integer.parseInt(m.get("total")+""));
+        });
+        result.put("data1",data1List);
+        result.put("data2",data2List);
+        return result;
+    }
+    /**
+     * 数据是键值对
+     */
+    public Map<String,Object> countCustomerMake02(){
+        Map<String,Object> result=new HashMap<>();
+        List<Map<String,Object>> list=customerMapper.countCustomerMake();
+        List<String> data1List=new ArrayList<>();
+        List<Map<String,Object>> data2List=new ArrayList<>();
+        list.forEach(m->{
+            data1List.add(m.get("level").toString());
+           Map<String,Object> temp=new HashMap<>();
+           temp.put("name",m.get("level"));
+           temp.put("value",m.get("total"));
+           data2List.add(temp);
+        });
+        result.put("data1",data1List);
+        result.put("data2",data2List);
+        return result;
+    }
+
 
 }

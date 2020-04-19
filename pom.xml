@@ -7,7 +7,7 @@
   <groupId>com.shsxt</groupId>
   <artifactId>crm</artifactId>
   <version>1.0-SNAPSHOT</version>
-
+   <!-- <packaging>war</packaging>-->
   <name>crm</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
@@ -44,7 +44,11 @@
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-freemarker</artifactId>
       </dependency>
-
+     <!-- <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+          <scope>provided</scope>
+      </dependency>-->
       <!--
          mybatis 集成
        -->
@@ -64,6 +68,7 @@
           <groupId>mysql</groupId>
           <artifactId>mysql-connector-java</artifactId>
           <scope>runtime</scope>
+          <version>5.1.30</version>
       </dependency>
       <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
       <dependency>
@@ -81,10 +86,15 @@
           <artifactId>fastjson</artifactId>
           <version>1.2.47</version>
       </dependency>
-
+      <dependency>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+          <version>2.8.6</version>
+      </dependency>
   </dependencies>
 
   <build>
+      <finalName>crm</finalName>
       <resources>
           <resource>
               <directory>src/main/resources</directory>

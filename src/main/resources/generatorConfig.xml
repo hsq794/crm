@@ -42,7 +42,7 @@
 
 
 
-        <table tableName="t_customer_reprieve" domainObjectName="CustomerRep"
+        <table tableName="t_log" domainObjectName="Log"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 

@@ -1,6 +1,7 @@
 package com.shsxt.crm.controller;
 
 import com.shsxt.base.BaseController;
+import com.shsxt.crm.annotaions.CrmLog;
 import com.shsxt.crm.model.ResultInfo;
 import com.shsxt.crm.query.CustomerQuery;
 import com.shsxt.crm.service.CustomerService;
@@ -33,6 +34,7 @@ public class CustomerController extends BaseController {
 
     @RequestMapping("save")
     @ResponseBody
+    @CrmLog(module = "客户管理",oper = "添加")
     public ResultInfo saveCustomer(Customer customer){
         customerService.saveCustomer(customer);
         return success("客户添加成功!");
@@ -56,6 +58,24 @@ public class CustomerController extends BaseController {
     public String showOrderInfo(Integer cid, Model model){
         model.addAttribute("customer",customerService.selectByPrimaryKey(cid));
         return "customer_order";
+    }
+
+    @RequestMapping("queryCustomerContributionByParams")
+    @ResponseBody
+    public Map<String,Object> queryCustomerContributionByParams(CustomerQuery customerQuery){
+        return customerService.queryCustomerContributionByParams(customerQuery);
+    }
+
+    @RequestMapping("countCustomerMake")
+    @ResponseBody
+    public Map<String,Object> countCustomerMake(){
+        return customerService.countCustomerMake();
+    }
+
+    @RequestMapping("countCustomerMake02")
+    @ResponseBody
+    public Map<String,Object> countCustomerMake02(){
+        return customerService.countCustomerMake02();
     }
 
 }
